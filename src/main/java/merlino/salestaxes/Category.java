@@ -10,7 +10,6 @@ public class Category
 
     public static final Category BOOKS = new Category("books", ZERO);
     public static final Category FOOD = new Category("food", ZERO);
-    public static final Category MULTIMEDIA = new Category("multimedia", ONE_TENTH);
     public static final Category OTHER = new Category("other", ONE_TENTH);
 
     String _id;

@@ -11,7 +11,6 @@ public class Categories
 
     public Categories() {
         _items.put("book", BOOKS);
-        _items.put("music CD", MULTIMEDIA);
         _items.put("chocolate bar", FOOD);
     }
 
