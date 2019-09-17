@@ -15,8 +15,8 @@ public class CategoryTest
 
     @Test
     public void shouldApplySalesTaxDependingOnName() {
-        assertThat(new Category("books").taxFor(ONE), is(ZERO));
-        assertThat(new Category("food").taxFor(ONE), is(ZERO));
-        assertThat(new Category("multimedia").taxFor(ONE), is(ONE_TENTH));
+        assertThat(Category.BOOKS.taxFor(ONE), is(ZERO));
+        assertThat(Category.FOOD.taxFor(ONE), is(ZERO));
+        assertThat(Category.MULTIMEDIA.taxFor(ONE), is(ONE_TENTH));
     }
 }

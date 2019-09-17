@@ -6,17 +6,23 @@ import static java.math.BigDecimal.ZERO;
 
 public class Category
 {
-    String _name;
+    private static final BigDecimal ONE_TENTH = new BigDecimal("0.10");
 
-    public Category(String name)
+    public static final Category BOOKS = new Category("books", ZERO);
+    public static final Category FOOD = new Category("food", ZERO);
+    public static final Category MULTIMEDIA = new Category("multimedia", ONE_TENTH);
+
+    String _name;
+    private BigDecimal _taxPercent;
+
+    private Category(String name, BigDecimal taxPercent)
     {
         _name = name;
+        _taxPercent = taxPercent;
     }
 
     public BigDecimal taxFor(BigDecimal basePrice)
     {
-        return "multimedia".equals(_name)
-                ? basePrice.multiply(new BigDecimal("0.10"))
-                : ZERO;
+        return _taxPercent.multiply(basePrice);
     }
 }
