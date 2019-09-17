@@ -17,6 +17,8 @@ public class Categories
 
     public Category bySku(String itemSku)
     {
-        return _items.get(itemSku);
+        return _items.containsKey(itemSku)
+                ? _items.get(itemSku)
+                : OTHER;
     }
 }
