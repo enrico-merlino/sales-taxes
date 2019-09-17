@@ -9,7 +9,7 @@ public class CashDesk
 
     public CashDesk add(String sku, String price)
     {
-        _salesTaxes = _salesTaxes.add(new Categories().bySku(sku).taxFor(new BigDecimal(price)));
+        _salesTaxes = _salesTaxes.add(new Catalog().bySku(sku).taxFor(new BigDecimal(price)));
         return this;
     }
 
