@@ -17,4 +17,10 @@ public class ProductTest
         assertThat(new Product("any", OTHER).taxFor(new BigDecimal("24.49")), is(new BigDecimal("2.4490")));
         assertThat(new Product("any", FOOD).taxFor(new BigDecimal("24.49")), is(new BigDecimal("0.00")));
     }
+
+    @Test
+    public void shouldExposeSku()
+    {
+        assertThat(new Product("Sku 1234", null).sku(), is("Sku 1234"));
+    }
 }

@@ -1,23 +1,27 @@
 package merlino.salestaxes;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
+import static java.util.Arrays.stream;
+import static java.util.stream.Collectors.toList;
 import static merlino.salestaxes.Category.*;
 
 public class Catalog
 {
-    Map<String, Product> _items = new HashMap<>();
+    Product[] _products = new Product[]
+            {
+                    new Product("book", BOOKS),
+                    new Product("chocolate bar", FOOD)
+            };
 
-    public Catalog() {
-        _items.put("book", new Product("book", BOOKS));
-        _items.put("chocolate bar", new Product("chocolate bar", FOOD));
-    }
-
-    public Product bySku(String itemSku)
+    public Product bySku(final String itemSku)
     {
-        return _items.containsKey(itemSku)
-                ? _items.get(itemSku)
+        List<Product> filtered = stream(_products)
+                .filter(product -> product.sku().equals(itemSku))
+                .collect(toList());
+
+        return filtered.size() > 0
+                ? filtered.get(0)
                 : new Product(itemSku, OTHER);
     }
 }
