@@ -18,5 +18,6 @@ public class CategoryTest
         assertThat(Category.BOOKS.taxFor(ONE), is(ZERO));
         assertThat(Category.FOOD.taxFor(ONE), is(ZERO));
         assertThat(Category.MULTIMEDIA.taxFor(ONE), is(ONE_TENTH));
+        assertThat(Category.OTHER.taxFor(ONE), is(ONE_TENTH));
     }
 }
