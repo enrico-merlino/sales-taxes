@@ -10,8 +10,8 @@ public class Catalog
 {
     Product[] _products = new Product[]
             {
-                    new Product("book", BOOKS),
-                    new Product("chocolate bar", FOOD)
+                    new Product("book"),
+                    new Product("chocolate bar")
             };
 
     public Product bySku(final String itemSku)
