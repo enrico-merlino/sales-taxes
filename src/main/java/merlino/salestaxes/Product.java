@@ -5,22 +5,17 @@ import java.math.BigDecimal;
 public class Product
 {
     private String _sku;
-    private Category _category;
+    private Tax _tax;
 
-    public Product(String sku, Category category)
+    public Product(String sku, Tax tax)
     {
         _sku = sku;
-        _category = category;
-    }
-
-    public Category category()
-    {
-        return _category;
+        _tax = tax;
     }
 
     public BigDecimal taxFor(BigDecimal currentPrice)
     {
-        return _category.taxFor(currentPrice);
+        return _tax.taxFor(currentPrice);
     }
 
     public String sku()

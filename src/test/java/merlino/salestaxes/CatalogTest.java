@@ -8,14 +8,16 @@ import static org.junit.Assert.assertThat;
 public class CatalogTest
 {
     @Test
-    public void shouldRetrieveCategoryByItemSku() {
-        assertThat(new Catalog().bySku("book").category().id(), is("books"));
-        assertThat(new Catalog().bySku("chocolate bar").category().id(), is("food"));
+    public void shouldRetrieveCategoryByItemSku()
+    {
+        assertThat(new Catalog().bySku("book").sku(), is("book"));
+        assertThat(new Catalog().bySku("chocolate bar").sku(), is("chocolate bar"));
     }
 
     @Test
-    public void shouldGiveDefaultCategoryOnUnknownItemSku() {
-        assertThat(new Catalog().bySku("unknown").category().id(), is("other"));
-        assertThat(new Catalog().bySku("music CD").category().id(), is("other"));
+    public void shouldGiveDefaultCategoryOnUnknownItemSku()
+    {
+        assertThat(new Catalog().bySku("unknown").sku(), is("unknown"));
+        assertThat(new Catalog().bySku("music CD").sku(), is("music CD"));
     }
 }

@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import static java.math.BigDecimal.ZERO;
 
-public class Category
+public class Category implements Tax
 {
     private static final BigDecimal ONE_TENTH = new BigDecimal("0.10");
 
@@ -21,6 +21,7 @@ public class Category
         _taxPercent = taxPercent;
     }
 
+    @Override
     public BigDecimal taxFor(BigDecimal basePrice)
     {
         return _taxPercent.multiply(basePrice);
