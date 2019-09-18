@@ -2,6 +2,8 @@ package merlino.salestaxes;
 
 import java.math.BigDecimal;
 
+import static merlino.salestaxes.BigDecimalUtils.format;
+
 public class Item
 {
     private Product _product;
@@ -21,5 +23,10 @@ public class Item
     public BigDecimal finalPrice()
     {
         return tax().add(_preTaxPrice);
+    }
+
+    public String asReceiptRow()
+    {
+        return String.join(" ", "1", _product.sku() + ":", format(finalPrice()));
     }
 }

@@ -1,8 +1,11 @@
 package merlino.salestaxes;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.stream.Collectors.joining;
+import static merlino.salestaxes.BigDecimalUtils.format;
 import static merlino.salestaxes.BigDecimalUtils.sum;
 
 public class CashDesk
@@ -15,8 +18,28 @@ public class CashDesk
         return this;
     }
 
-    public String salesTaxes()
+    public String receipt()
     {
-        return String.format("%,.2f", sum(_items.stream().map(item -> item.tax())));
+        return String.join("\n",
+                items(),
+                "Sales Taxes: " + format(totalTaxes()),
+                "Total: " + format(total()));
+    }
+
+    private String items()
+    {
+        return _items.stream()
+                .map(item -> item.asReceiptRow())
+                .collect(joining("\n"));
+    }
+
+    private BigDecimal totalTaxes()
+    {
+        return sum(_items.stream().map(item -> item.tax()));
+    }
+
+    private BigDecimal total()
+    {
+        return sum(_items.stream().map(item -> item.finalPrice()));
     }
 }

@@ -11,4 +11,9 @@ public class BigDecimalUtils
     {
         return values.reduce(ZERO, (a, b) -> a.add(b));
     }
+
+    public static String format(BigDecimal value)
+    {
+        return String.format("%,.2f", value);
+    }
 }

@@ -21,4 +21,12 @@ public class BigDecimalUtilsTest
 
         assertThat(BigDecimalUtils.sum(stream(values)), is(new BigDecimal("17.88")));
     }
+
+    @Test
+    public void shouldFormat()
+    {
+        assertThat(BigDecimalUtils.format(new BigDecimal("236.456")), is("236.46"));
+        assertThat(BigDecimalUtils.format(new BigDecimal("-100")), is("-100.00"));
+        assertThat(BigDecimalUtils.format(new BigDecimal("99.9")), is("99.90"));
+    }
 }

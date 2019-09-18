@@ -15,7 +15,12 @@ public class CashDeskTest
                 .add("music CD", "14.99")
                 .add("chocolate bar", "0.85");
 
-        assertThat(cashDesk.salesTaxes(), is("1.50"));
+        assertThat(cashDesk.receipt(), is(String.join("\n",
+                "1 book: 12.49",
+                "1 music CD: 16.49",
+                "1 chocolate bar: 0.85",
+                "Sales Taxes: 1.50",
+                "Total: 29.83")));
     }
 
     @Test
@@ -25,6 +30,10 @@ public class CashDeskTest
                 .add("imported box of chocolates", "10.00")
                 .add("imported bottle of perfume", "47.50");
 
-        assertThat(cashDesk.salesTaxes(), is("7.65"));
+        assertThat(cashDesk.receipt(), is(String.join("\n",
+                "1 imported box of chocolates: 10.50",
+                        "1 imported bottle of perfume: 54.65",
+                        "Sales Taxes: 7.65",
+                        "Total: 65.15")));
     }
 }
