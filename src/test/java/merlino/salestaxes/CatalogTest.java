@@ -14,10 +14,9 @@ public class CatalogTest
         assertThat(new Catalog().bySku("chocolate bar").sku(), is("chocolate bar"));
     }
 
-    @Test
+    @Test(expected = Exception.class)
     public void shouldGiveDefaultCategoryOnUnknownItemSku()
     {
-        assertThat(new Catalog().bySku("unknown").sku(), is("unknown"));
-        assertThat(new Catalog().bySku("music CD").sku(), is("music CD"));
+        new Catalog().bySku("unknown");
     }
 }
