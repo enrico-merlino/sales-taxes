@@ -4,7 +4,6 @@ import java.util.List;
 
 import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toList;
-import static merlino.salestaxes.Category.*;
 
 public class Catalog
 {
@@ -22,6 +21,6 @@ public class Catalog
 
         return filtered.size() > 0
                 ? filtered.get(0)
-                : new Product(itemSku, OTHER);
+                : new Product(itemSku, new BasicSalesTax());
     }
 }

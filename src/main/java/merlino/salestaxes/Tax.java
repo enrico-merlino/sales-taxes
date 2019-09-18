@@ -6,8 +6,8 @@ public abstract class Tax
 {
     public BigDecimal taxFor(BigDecimal basePrice)
     {
-        return TaxPercent().multiply(basePrice);
+        return taxPercent().multiply(basePrice);
     }
 
-    protected abstract BigDecimal TaxPercent();
+    protected abstract BigDecimal taxPercent();
 }

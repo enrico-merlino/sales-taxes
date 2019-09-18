@@ -8,12 +8,13 @@ import static java.math.BigDecimal.ONE;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public class CategoryTest
+public class BasicSalesTaxTest
 {
     private BigDecimal ONE_TENTH = new BigDecimal("0.10");
 
     @Test
-    public void shouldApplySalesTaxDependingOnName() {
-        assertThat(Category.OTHER.taxFor(ONE), is(ONE_TENTH));
+    public void shouldApplySalesTaxDependingOnName()
+    {
+        assertThat(new BasicSalesTax().taxFor(ONE), is(ONE_TENTH));
     }
 }
