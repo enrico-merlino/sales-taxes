@@ -2,7 +2,12 @@ package merlino.salestaxes;
 
 import java.math.BigDecimal;
 
-public interface Tax
+public abstract class Tax
 {
-    BigDecimal taxFor(BigDecimal basePrice);
+    public BigDecimal taxFor(BigDecimal basePrice)
+    {
+        return TaxPercent().multiply(basePrice);
+    }
+
+    protected abstract BigDecimal TaxPercent();
 }
