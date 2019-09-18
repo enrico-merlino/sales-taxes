@@ -1,20 +1,25 @@
 package merlino.salestaxes;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.math.BigDecimal.ZERO;
 
 public class CashDesk
 {
-    BigDecimal _salesTaxes = BigDecimal.ZERO;
+    List<Item> _items = new ArrayList<>();
 
     public CashDesk add(String sku, String price)
     {
-        _salesTaxes = _salesTaxes.add(new Catalog().bySku(sku).taxFor(new BigDecimal(price)));
+        _items.add(new Item(new Catalog().bySku(sku), price));
         return this;
     }
 
     public String salesTaxes()
     {
-        return String.format("%,.2f", _salesTaxes);
+        return String.format("%,.2f",
+                _items.stream()
+                        .map(item -> item.tax())
+                        .reduce(ZERO, (a, b) -> a.add(b)));
     }
 }
