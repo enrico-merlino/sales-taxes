@@ -19,12 +19,12 @@ public class ProductTest
     @Test
     public void shouldCalculateTaxForSingleTax()
     {
-        assertThat(new Product("any", new BasicSalesTax()).taxFor(new BigDecimal("24.49")), is(new BigDecimal("2.4490")));
+        assertThat(new Product("any", new BasicSalesTax()).taxFor(new BigDecimal("24.49")), is(new BigDecimal("2.45")));
     }
 
     @Test
     public void shouldCalculateTaxForMultipleTaxes()
     {
-        assertThat(new Product("any", new BasicSalesTax(), new BasicSalesTax()).taxFor(new BigDecimal("24.49")), is(new BigDecimal("4.8980")));
+        assertThat(new Product("any", new BasicSalesTax(), new BasicSalesTax()).taxFor(new BigDecimal("24.49")), is(new BigDecimal("4.90")));
     }
 }

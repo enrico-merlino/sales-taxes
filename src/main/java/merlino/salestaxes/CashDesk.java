@@ -15,6 +15,6 @@ public class CashDesk
 
     public String salesTaxes()
     {
-        return String.format("%,.2f", _salesTaxes.setScale(2, RoundingMode.HALF_UP));
+        return String.format("%,.2f", _salesTaxes);
     }
 }
