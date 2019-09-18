@@ -3,7 +3,7 @@ package merlino.salestaxes;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.math.BigDecimal.ZERO;
+import static merlino.salestaxes.BigDecimalUtils.sum;
 
 public class CashDesk
 {
@@ -17,9 +17,6 @@ public class CashDesk
 
     public String salesTaxes()
     {
-        return String.format("%,.2f",
-                _items.stream()
-                        .map(item -> item.tax())
-                        .reduce(ZERO, (a, b) -> a.add(b)));
+        return String.format("%,.2f", sum(_items.stream().map(item -> item.tax())));
     }
 }

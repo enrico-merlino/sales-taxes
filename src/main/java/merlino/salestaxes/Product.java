@@ -1,9 +1,9 @@
 package merlino.salestaxes;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 
-import static java.math.BigDecimal.ZERO;
+import static java.util.Arrays.stream;
+import static merlino.salestaxes.BigDecimalUtils.sum;
 
 public class Product
 {
@@ -18,9 +18,7 @@ public class Product
 
     public BigDecimal taxFor(BigDecimal currentPrice)
     {
-        return Arrays.stream(_taxes)
-                .map(tax -> tax.taxFor(currentPrice))
-                .reduce(ZERO, (a, b) -> a.add(b));
+        return sum(stream(_taxes).map(tax -> tax.taxFor(currentPrice)));
     }
 
     public String sku()
