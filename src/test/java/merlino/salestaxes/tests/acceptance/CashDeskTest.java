@@ -17,9 +17,9 @@ public class CashDeskTest
                 new Product("music CD", new BasicSalesTax()));
 
         CashDesk cashDesk = new CashDesk(catalog)
-                .add("book", "12.49")
-                .add("music CD", "14.99")
-                .add("chocolate bar", "0.85");
+                .add(1, "book", "12.49")
+                .add(1, "music CD", "14.99")
+                .add(1, "chocolate bar", "0.85");
 
         assertThat(cashDesk.receipt(), is(String.join("\n",
                 "1 book: 12.49",
@@ -37,8 +37,8 @@ public class CashDeskTest
                 new Product("imported bottle of perfume", new BasicSalesTax(), new ImportDuty()));
 
         CashDesk cashDesk = new CashDesk(catalog)
-                .add("imported box of chocolates", "10.00")
-                .add("imported bottle of perfume", "47.50");
+                .add(1, "imported box of chocolates", "10.00")
+                .add(1, "imported bottle of perfume", "47.50");
 
         assertThat(cashDesk.receipt(), is(String.join("\n",
                 "1 imported box of chocolates: 10.50",
@@ -57,10 +57,10 @@ public class CashDeskTest
                 new Product("packet of headache pills"));
 
         CashDesk cashDesk = new CashDesk(catalog)
-                .add("imported bottle of perfume", "27.99")
-                .add("bottle of perfume", "18.99")
-                .add("packet of headache pills", "9.75")
-                .add("imported box of chocolates", "11.25");
+                .add(1, "imported bottle of perfume", "27.99")
+                .add(1, "bottle of perfume", "18.99")
+                .add(1, "packet of headache pills", "9.75")
+                .add(1, "imported box of chocolates", "11.25");
 
         assertThat(cashDesk.receipt(), is(String.join("\n",
                 "1 imported bottle of perfume: 32.19",
@@ -69,5 +69,20 @@ public class CashDeskTest
                 "1 imported box of chocolates: 11.85",
                 "Sales Taxes: 6.70",
                 "Total: 74.68")));
+    }
+
+    @Test
+    public void shouldConsiderQuantities()
+    {
+        Catalog catalog = new Catalog(
+                new Product("imported bottle of perfume", new BasicSalesTax(), new ImportDuty()));
+
+        CashDesk cashDesk = new CashDesk(catalog)
+                .add(2, "imported bottle of perfume", "10.99");
+
+        assertThat(cashDesk.receipt(), is(String.join("\n",
+                "2 imported bottle of perfume: 25.28",
+                "Sales Taxes: 3.30",
+                "Total: 25.28")));
     }
 }

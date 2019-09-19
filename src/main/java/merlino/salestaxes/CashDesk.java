@@ -18,9 +18,9 @@ public class CashDesk
         _catalog = catalog;
     }
 
-    public CashDesk add(String sku, String price)
+    public CashDesk add(int quantity, String sku, String price)
     {
-        _items.add(new Item(price, _catalog.bySku(sku)));
+        _items.add(new Item(quantity, price, _catalog.bySku(sku)));
         return this;
     }
 

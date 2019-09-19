@@ -15,14 +15,21 @@ public class ItemTest
     @Test
     public void shouldCalculateTax()
     {
-        Item item = new Item("109.99", new Product("any", new PercentTax("0.087"), new PercentTax("0.105")));
-        assertThat(item.tax(), is(new BigDecimal("21.15")));
+        Item item = new Item(3, "109.99", new Product("any", new PercentTax("0.087"), new PercentTax("0.105")));
+        assertThat(item.tax(), is(new BigDecimal("63.45")));
     }
 
     @Test
     public void shouldCalculateFinalPrice()
     {
-        Item item = new Item("21.34", new Product("any", new PercentTax("0.04")));
-        assertThat(item.finalPrice(), is(new BigDecimal("22.24")));
+        Item item = new Item(2, "21.34", new Product("any", new PercentTax("0.04")));
+        assertThat(item.finalPrice(), is(new BigDecimal("44.48")));
+    }
+
+    @Test
+    public void shouldDescribeItselfAsReceiptRow()
+    {
+        Item item = new Item(4, "199.99", new Product("phone", new PercentTax("0.13")));
+        assertThat(item.asReceiptRow(), is("4 phone: 903.96"));
     }
 }
