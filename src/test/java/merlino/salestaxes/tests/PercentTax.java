@@ -1,4 +1,6 @@
-package merlino.salestaxes;
+package merlino.salestaxes.tests;
+
+import merlino.salestaxes.Tax;
 
 import java.math.BigDecimal;
 

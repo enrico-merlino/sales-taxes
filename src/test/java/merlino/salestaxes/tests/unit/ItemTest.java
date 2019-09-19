@@ -1,7 +1,7 @@
 package merlino.salestaxes.tests.unit;
 
 import merlino.salestaxes.Item;
-import merlino.salestaxes.PercentTax;
+import merlino.salestaxes.tests.PercentTax;
 import merlino.salestaxes.Product;
 import org.junit.Test;
 
