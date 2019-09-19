@@ -1,5 +1,6 @@
-package merlino.salestaxes;
+package merlino.salestaxes.tests.unit;
 
+import merlino.salestaxes.Catalog;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;

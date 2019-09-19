@@ -1,5 +1,6 @@
-package merlino.salestaxes;
+package merlino.salestaxes.tests.acceptance;
 
+import merlino.salestaxes.CashDesk;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
