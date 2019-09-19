@@ -11,10 +11,16 @@ import static merlino.salestaxes.BigDecimalUtils.sum;
 public class CashDesk
 {
     List<Item> _items = new ArrayList<>();
+    Catalog _catalog;
+
+    public CashDesk(Catalog catalog)
+    {
+        _catalog = catalog;
+    }
 
     public CashDesk add(String sku, String price)
     {
-        _items.add(new Item(price, new Catalog().bySku(sku)));
+        _items.add(new Item(price, _catalog.bySku(sku)));
         return this;
     }
 

@@ -1,6 +1,7 @@
 package merlino.salestaxes.tests.unit;
 
 import merlino.salestaxes.Catalog;
+import merlino.salestaxes.Product;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
@@ -11,13 +12,13 @@ public class CatalogTest
     @Test
     public void shouldRetrieveCategoryByItemSku()
     {
-        assertThat(new Catalog().bySku("book").sku(), is("book"));
-        assertThat(new Catalog().bySku("chocolate bar").sku(), is("chocolate bar"));
+        assertThat(new Catalog(new Product("the only product")).bySku("the only product").sku(),
+                is("the only product"));
     }
 
     @Test(expected = Exception.class)
     public void shouldGiveDefaultCategoryOnUnknownItemSku()
     {
-        new Catalog().bySku("unknown");
+        new Catalog(new Product("the only product")).bySku("unknown");
     }
 }

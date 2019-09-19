@@ -5,16 +5,12 @@ import static java.util.stream.Collectors.toList;
 
 public class Catalog
 {
-    Product[] _products = new Product[]
-            {
-                    new Product("book"),
-                    new Product("chocolate bar"),
-                    new Product("music CD", new BasicSalesTax()),
-                    new Product("imported box of chocolates", new ImportDuty()),
-                    new Product("imported bottle of perfume", new BasicSalesTax(), new ImportDuty()),
-                    new Product("bottle of perfume", new BasicSalesTax()),
-                    new Product("packet of headache pills")
-            };
+    Product[] _products;
+
+    public Catalog(Product ... products)
+    {
+        _products = products;
+    }
 
     public Product bySku(final String itemSku)
     {

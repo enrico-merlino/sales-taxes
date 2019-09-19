@@ -1,6 +1,6 @@
 package merlino.salestaxes.tests.acceptance;
 
-import merlino.salestaxes.CashDesk;
+import merlino.salestaxes.*;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
@@ -11,7 +11,12 @@ public class CashDeskTest
     @Test
     public void shouldApplyBasicSalesTaxOnCorrectCategories()
     {
-        CashDesk cashDesk = new CashDesk()
+        Catalog catalog = new Catalog(
+                new Product("book"),
+                new Product("chocolate bar"),
+                new Product("music CD", new BasicSalesTax()));
+
+        CashDesk cashDesk = new CashDesk(catalog)
                 .add("book", "12.49")
                 .add("music CD", "14.99")
                 .add("chocolate bar", "0.85");
@@ -27,7 +32,11 @@ public class CashDeskTest
     @Test
     public void shouldApplyImportDutyOnImportedGoods()
     {
-        CashDesk cashDesk = new CashDesk()
+        Catalog catalog = new Catalog(
+                new Product("imported box of chocolates", new ImportDuty()),
+                new Product("imported bottle of perfume", new BasicSalesTax(), new ImportDuty()));
+
+        CashDesk cashDesk = new CashDesk(catalog)
                 .add("imported box of chocolates", "10.00")
                 .add("imported bottle of perfume", "47.50");
 
@@ -41,7 +50,13 @@ public class CashDeskTest
     @Test
     public void shouldApplyTaxesOnMixedGoods()
     {
-        CashDesk cashDesk = new CashDesk()
+        Catalog catalog = new Catalog(
+                new Product("imported box of chocolates", new ImportDuty()),
+                new Product("imported bottle of perfume", new BasicSalesTax(), new ImportDuty()),
+                new Product("bottle of perfume", new BasicSalesTax()),
+                new Product("packet of headache pills"));
+
+        CashDesk cashDesk = new CashDesk(catalog)
                 .add("imported bottle of perfume", "27.99")
                 .add("bottle of perfume", "18.99")
                 .add("packet of headache pills", "9.75")
