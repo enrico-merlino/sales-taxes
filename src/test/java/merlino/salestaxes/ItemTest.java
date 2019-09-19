@@ -13,13 +13,13 @@ public class ItemTest
     public void shouldCalculateTax()
     {
         Item item = new Item("109.99", new Product("any", new PercentTax("0.087"), new PercentTax("0.105")));
-        assertThat(item.tax(), is(new BigDecimal("21.10")));
+        assertThat(item.tax(), is(new BigDecimal("21.15")));
     }
 
     @Test
     public void shouldCalculateFinalPrice()
     {
         Item item = new Item("21.34", new Product("any", new PercentTax("0.04")));
-        assertThat(item.finalPrice(), is(new BigDecimal("22.19")));
+        assertThat(item.finalPrice(), is(new BigDecimal("22.24")));
     }
 }

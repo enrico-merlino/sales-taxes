@@ -2,7 +2,7 @@ package merlino.salestaxes;
 
 import java.math.BigDecimal;
 
-import static java.math.RoundingMode.HALF_UP;
+import static java.math.RoundingMode.UP;
 
 public abstract class Tax
 {
@@ -19,7 +19,7 @@ public abstract class Tax
         return value
                 .multiply(HUNDRED)
                 .divide(FIVE)
-                .setScale(0, HALF_UP)
+                .setScale(0, UP)
                 .multiply(FIVE)
                 .setScale(2)
                 .divide(HUNDRED);

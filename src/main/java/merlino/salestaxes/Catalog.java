@@ -11,7 +11,9 @@ public class Catalog
                     new Product("chocolate bar"),
                     new Product("music CD", new BasicSalesTax()),
                     new Product("imported box of chocolates", new ImportDuty()),
-                    new Product("imported bottle of perfume", new BasicSalesTax(), new ImportDuty())
+                    new Product("imported bottle of perfume", new BasicSalesTax(), new ImportDuty()),
+                    new Product("bottle of perfume", new BasicSalesTax()),
+                    new Product("packet of headache pills")
             };
 
     public Product bySku(final String itemSku)

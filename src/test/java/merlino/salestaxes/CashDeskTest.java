@@ -36,4 +36,22 @@ public class CashDeskTest
                         "Sales Taxes: 7.65",
                         "Total: 65.15")));
     }
+
+    @Test
+    public void shouldApplyTaxesOnMixedGoods()
+    {
+        CashDesk cashDesk = new CashDesk()
+                .add("imported bottle of perfume", "27.99")
+                .add("bottle of perfume", "18.99")
+                .add("packet of headache pills", "9.75")
+                .add("imported box of chocolates", "11.25");
+
+        assertThat(cashDesk.receipt(), is(String.join("\n",
+                "1 imported bottle of perfume: 32.19",
+                "1 bottle of perfume: 20.89",
+                "1 packet of headache pills: 9.75",
+                "1 imported box of chocolates: 11.85",
+                "Sales Taxes: 6.70",
+                "Total: 74.68")));
+    }
 }
