@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import static java.math.RoundingMode.UP;
 
-public abstract class Tax
+public abstract class Tax implements Taxable
 {
     private static final BigDecimal FIVE = new BigDecimal("5");
     private static final BigDecimal HUNDRED = new BigDecimal("100");
