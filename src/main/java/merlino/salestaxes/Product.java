@@ -11,19 +11,17 @@ import static merlino.salestaxes.BigDecimalUtils.sum;
 public class Product
 {
     private String _sku;
-    private List<Taxable> _taxables;
+    private Taxable[] _taxables;
 
-    public Product(String sku, Category category, Taxable... taxables)
+    public Product(String sku, Category category, Origin origin)
     {
         _sku = sku;
-        _taxables = new ArrayList<>();
-        _taxables.add(category);
-        _taxables.addAll(stream(taxables).collect(toList()));
+        _taxables = new Taxable[] {category, origin};
     }
 
     public BigDecimal taxFor(BigDecimal currentPrice)
     {
-        return sum(_taxables.stream().map(tax -> tax.taxFor(currentPrice)));
+        return sum(stream(_taxables).map(tax -> tax.taxFor(currentPrice)));
     }
 
     public String sku()

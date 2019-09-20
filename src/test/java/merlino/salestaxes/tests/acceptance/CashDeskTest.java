@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.junit.experimental.categories.Categories;
 
 import static merlino.salestaxes.Category.*;
+import static merlino.salestaxes.Origin.IMPORTED;
+import static merlino.salestaxes.Origin.NATIONAL;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -14,9 +16,9 @@ public class CashDeskTest
     public void shouldApplyBasicSalesTaxOnCorrectCategories()
     {
         Catalog catalog = new Catalog(
-                new Product("book", BOOKS),
-                new Product("chocolate bar", FOOD),
-                new Product("music CD", ENTERTAINMENT));
+                new Product("book", BOOKS, NATIONAL),
+                new Product("chocolate bar", FOOD, NATIONAL),
+                new Product("music CD", ENTERTAINMENT, NATIONAL));
 
         CashDesk cashDesk = new CashDesk(catalog)
                 .add(1, "book", "12.49")
@@ -35,8 +37,8 @@ public class CashDeskTest
     public void shouldApplyImportDutyOnImportedGoods()
     {
         Catalog catalog = new Catalog(
-                new Product("imported box of chocolates", FOOD, new ImportDuty()),
-                new Product("imported bottle of perfume", FASHION, new ImportDuty()));
+                new Product("imported box of chocolates", FOOD, IMPORTED),
+                new Product("imported bottle of perfume", FASHION, IMPORTED));
 
         CashDesk cashDesk = new CashDesk(catalog)
                 .add(1, "imported box of chocolates", "10.00")
@@ -53,10 +55,10 @@ public class CashDeskTest
     public void shouldApplyTaxesOnMixedGoods()
     {
         Catalog catalog = new Catalog(
-                new Product("imported box of chocolates", FOOD, new ImportDuty()),
-                new Product("imported bottle of perfume", FASHION, new ImportDuty()),
-                new Product("bottle of perfume", FASHION),
-                new Product("packet of headache pills", MEDICAL));
+                new Product("imported box of chocolates", FOOD, IMPORTED),
+                new Product("imported bottle of perfume", FASHION, IMPORTED),
+                new Product("bottle of perfume", FASHION, NATIONAL),
+                new Product("packet of headache pills", MEDICAL, NATIONAL));
 
         CashDesk cashDesk = new CashDesk(catalog)
                 .add(1, "imported bottle of perfume", "27.99")
@@ -77,7 +79,7 @@ public class CashDeskTest
     public void shouldConsiderQuantities()
     {
         Catalog catalog = new Catalog(
-                new Product("imported bottle of perfume", FASHION, new ImportDuty()));
+                new Product("imported bottle of perfume", FASHION, IMPORTED));
 
         CashDesk cashDesk = new CashDesk(catalog)
                 .add(2, "imported bottle of perfume", "10.99");

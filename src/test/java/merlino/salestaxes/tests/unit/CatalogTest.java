@@ -12,13 +12,13 @@ public class CatalogTest
     @Test
     public void shouldRetrieveCategoryByItemSku()
     {
-        assertThat(new Catalog(new Product("the only product", null)).bySku("the only product").sku(),
+        assertThat(new Catalog(new Product("the only product", null, null)).bySku("the only product").sku(),
                 is("the only product"));
     }
 
     @Test(expected = Exception.class)
     public void shouldGiveDefaultCategoryOnUnknownItemSku()
     {
-        new Catalog(new Product("the only product", null)).bySku("unknown");
+        new Catalog(new Product("the only product", null, null)).bySku("unknown");
     }
 }
